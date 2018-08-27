@@ -143,5 +143,34 @@ Obs    USERID    RACE    YEAR    VAR1    VAR2
  5       2        0      2009     N       30
  6       2        0      2010     N       35
 
+Generates some very fast code
+
+1    + data work.want
+2    + ( keep=UserID year Var1 Var2 Race);
+3    + set work.have;
+4    + informat year 8. ;
+5    + format year 8. ;
+6    + length VAR1 $ 8 ;
+7    + VAR1=VAR1_2008;
+8    + length VAR2 $ 8 ;
+9    + VAR2=VAR2_2008;
+10   + if (not missing(VAR1)) or (not missing(VAR2)) then do;
+11   + year=2008;
+12   + output;
+13   + end;
+14   + VAR1=VAR1_2009;
+15   + VAR2=VAR2_2009;
+16   + if (not missing(VAR1)) or (not missing(VAR2)) then do;
+17   + year=2009;
+18   + output;
+19   + end;
+20   + VAR1=VAR1_2010;
+21   + VAR2=VAR2_2010;
+22   + if (not missing(VAR1)) or (not missing(VAR2)) then do;
+23   + year=2010;
+24   + output;
+25   + end;
+26   + run;
+
 
 
