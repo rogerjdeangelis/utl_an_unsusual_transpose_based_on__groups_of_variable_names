@@ -1,7 +1,19 @@
 # utl_an_unsusual_transpose_based_on__groups_of_variable_names
 An unsusual transpose based on  groups of variable names. Keywords: sas sql join merge big data analytics macros oracle teradata mysql sas communities stackoverflow statistics artificial inteligence AI Python R Java Javascript WPS Matlab SPSS Scala Perl C C# Excel MS Access JSON graphics maps NLP natural language processing machine learning igraph DOSUBL DOW loop stackoverflow SAS community.
+    
     An unsusual transpose based on groups of variable names
+    Added to my github (thanks Art)
 
+    see Arthur Tabachneck simple solution on end
+
+    see stackoverflow or below
+    https://stackoverflow.com/questions/51972063/wide-to-long-dataset-in-sas
+
+    Arts contact
+    art@analystfinder.com
+    https://stackoverflow.com/users/10277606/arthur-tabachneck
+
+    Original post
     github
     https://tinyurl.com/ybp99c72
     https://github.com/rogerjdeangelis/utl_an_unsusual_transpose_based_on__groups_of_variable_names
@@ -95,4 +107,44 @@ An unsusual transpose based on  groups of variable names. Keywords: sas sql join
      2 N N N 15 30 35 0
     ;;;;
     run;quit;
+
+
+    *   _         _
+       / \   _ __| |_
+      / _ \ | '__| __|
+     / ___ \| |  | |_
+    /_/   \_\_|   \__|
+
+    ;
+
+    data have;
+     input (UserID Var1_2008 Var1_2009 Var1_2010 Var2_2008 Var2_2009 Var2_2010 Race) ($);
+    cards4;
+     1 Y N Y 20 30 20 1
+     2 N N N 15 30 35 0
+    ;;;;
+    run;quit;
+
+    %untranspose(data=have, out=want, by=UserID, id=year, delimiter=_,
+       var=Var1 Var2, copy=Race)
+
+
+    If you don't have it, you should, see below
+    https://tinyurl.com/ydbqcqmt
+    filename ut url 'https://raw.githubusercontent.com/FriedEgg/Papers/master/An_Easier_and_Faster_Way_to_Untranspose_a_Wide_File/src/untranspose.sas';
+
+
+    Up to 40 obs from WANT total obs=6
+
+    Obs    USERID    RACE    YEAR    VAR1    VAR2
+
+     1       1        1      2008     Y       20
+     2       1        1      2009     N       30
+     3       1        1      2010     Y       20
+     4       2        0      2008     N       15
+     5       2        0      2009     N       30
+     6       2        0      2010     N       35
+
+
+
 
